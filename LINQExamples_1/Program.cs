@@ -15,9 +15,9 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
 //}
 
-// ##########################################
+// #########################################
 // Select and WHere Operators - Query Syntax
-// ##########################################
+// #########################################
 //var results = from emp in empolyeeList
 //              where emp.AnnualSalary > 50000
 //              select new
@@ -31,15 +31,30 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
 //}
 
-// ##########################################
+// ##########################
 // Deffered Execution example
-// ##########################################
+// ##########################
 //var results = from emp in empolyeeList.GetHighSalariedEmployees()
 //              select new
 //              {
 //                  FullName = emp.FirstName + " " + emp.LastName,
 //                  AnnualSalary = emp.AnnualSalary
 //              };
+
+//foreach (var result in results)
+//{
+//    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+//}
+
+// ###########################
+// Inmediate Execution example
+// ###########################
+//var results = (from emp in empolyeeList.GetHighSalariedEmployees()
+//               select new
+//               {
+//                   FullName = emp.FirstName + " " + emp.LastName,
+//                   AnnualSalary = emp.AnnualSalary
+//               }).ToList();
 
 //foreach (var result in results)
 //{
