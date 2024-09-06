@@ -1,7 +1,9 @@
 ﻿List<Employee> empolyeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
 
+// ##########################################
 // Select and WHere Operators - Method Syntax
+// ##########################################
 //var results = empolyeeList.Select(e => new
 //{
 //    FullName = e.FirstName + " " + e.LastName,
@@ -13,19 +15,49 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
 //}
 
-
+// ##########################################
 // Select and WHere Operators - Query Syntax
-var results = from emp in empolyeeList
-              where emp.AnnualSalary > 50000
-              select new
-              {
-                  FullName = emp.FirstName + " " + emp.LastName,
-                  AnnualSalary = emp.AnnualSalary
-              };
+// ##########################################
+//var results = from emp in empolyeeList
+//              where emp.AnnualSalary > 50000
+//              select new
+//              {
+//                  FullName = emp.FirstName + " " + emp.LastName,
+//                  AnnualSalary = emp.AnnualSalary
+//              };
 
-foreach (var result in results)
+//foreach (var result in results)
+//{
+//    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+//}
+
+// ##########################################
+// Deffered Execution example
+// ##########################################
+//var results = from emp in empolyeeList.GetHighSalariedEmployees()
+//              select new
+//              {
+//                  FullName = emp.FirstName + " " + emp.LastName,
+//                  AnnualSalary = emp.AnnualSalary
+//              };
+
+//foreach (var result in results)
+//{
+//    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+//}
+
+
+public static class EnumarableCollectionExtensionMethods
 {
-    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+    public static IEnumerable<Employee> GetHighSalariedEmployees(this IEnumerable<Employee> employees)
+    {
+        foreach (Employee emp in employees)
+        {
+            Console.WriteLine($"Accessing employee: {emp.FirstName + " " + emp.LastName}");
+
+            if (emp.AnnualSalary > 50000) yield return emp;
+        }
+    }
 }
 
 public class Employee
@@ -76,7 +108,7 @@ public static class Data
         {
             Id = 3,
             FirstName = "Bob",
-            LastName = "Martin",
+            LastName = "Marley",
             AnnualSalary = 40000,
             IsManager = false,
             DepartmentId = 2,
