@@ -12,6 +12,22 @@ List<Department> departmentList = Data.GetDepartments();
 //{
 //    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
 //}
+
+
+// Select and WHere Operators - Query Syntax
+var results = from emp in empolyeeList
+              where emp.AnnualSalary > 50000
+              select new
+              {
+                  FullName = emp.FirstName + " " + emp.LastName,
+                  AnnualSalary = emp.AnnualSalary
+              };
+
+foreach (var result in results)
+{
+    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+}
+
 public class Employee
 {
     public int Id { get; set; }
