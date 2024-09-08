@@ -22,9 +22,9 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
 //}
 
-//// ###########################################
-//// OrderBy and ThenBy Operators - Query Syntax
-//// ###########################################
+//// ###############################
+//// OrderBy Operator - Query Syntax
+//// ###############################
 var results = from emp in empolyeeList
               join dept in departmentList
               on emp.DepartmentId equals dept.Id
