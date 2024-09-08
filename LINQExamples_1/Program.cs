@@ -98,6 +98,48 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine($"{result.FullName,-20} {result.AnnualSalary,10} {result.DepartmentName}");
 //}
 
+//// ############################################
+//// Group Join Operation example - Method Syntax
+//// ############################################
+//var results = departmentList.GroupJoin(empolyeeList,
+//        dept => dept.Id,
+//        emp => emp.DepartmentId,
+//        (department, employeeGroup) => new
+//        {
+//            Employees = employeeGroup,
+//            DepartmentName = department.LongName
+//        });
+
+//foreach (var result in results)
+//{
+//    Console.WriteLine($"Department name: {result.DepartmentName}");
+//    foreach (var item in result.Employees)
+//    {
+//        Console.WriteLine($"\t{item.FirstName} {item.LastName}");
+//    }
+//}
+
+//// ###########################################
+//// Group Join Operation example - Query Syntax
+//// ###########################################
+var results = from dept in departmentList
+              join emp in empolyeeList
+              on dept.Id equals emp.DepartmentId
+              into employeeGroup
+              select new
+              {
+                  Employees = employeeGroup,
+                  DepartmentName = dept.LongName
+              };
+
+foreach (var result in results)
+{
+    Console.WriteLine($"Department name: {result.DepartmentName}");
+    foreach (var item in result.Employees)
+    {
+        Console.WriteLine($"\t{item.FirstName} {item.LastName}");
+    }
+}
 
 public static class EnumarableCollectionExtensionMethods
 {
