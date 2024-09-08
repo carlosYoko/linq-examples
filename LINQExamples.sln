@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35201.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQExamples_1", "LINQExamples_1\LINQExamples_1.csproj", "{2DD41A52-FA27-4868-A904-30E4B13D868B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LINQQueries", "LINQExamples_1\LINQQueries.csproj", "{2DD41A52-FA27-4868-A904-30E4B13D868B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
