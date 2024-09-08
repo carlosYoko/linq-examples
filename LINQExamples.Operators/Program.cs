@@ -1,6 +1,49 @@
 ﻿List<Employee> empolyeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
 
+//// ############################################
+//// OrderBy and ThenBy Operators - Method Syntax
+//// ############################################
+//var results = empolyeeList.Join(departmentList,
+//        e => e.DepartmentId,
+//        d => d.Id,
+//        (emp, dept) => new
+//        {
+//            Id = emp.Id,
+//            FirstName = emp.FirstName,
+//            LastName = emp.LastName,
+//            AnnualSalary = emp.AnnualSalary,
+//            DepartmentId = dept.Id,
+//            DepartmentName = dept.LongName,
+//        }).OrderBy(o => o.FirstName).ThenBy(o => o.AnnualSalary);
+
+//foreach (var result in results)
+//{
+//    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
+//}
+
+//// ###########################################
+//// OrderBy and ThenBy Operators - Query Syntax
+//// ###########################################
+var results = from emp in empolyeeList
+              join dept in departmentList
+              on emp.DepartmentId equals dept.Id
+              orderby emp.DepartmentId, emp.AnnualSalary descending
+              select new
+              {
+                  Id = emp.Id,
+                  FirstName = emp.FirstName,
+                  LastName = emp.LastName,
+                  AnnualSalary = emp.AnnualSalary,
+                  DepartmentId = dept.Id,
+                  DepartmentName = dept.LongName,
+              };
+
+foreach (var result in results)
+{
+    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
+}
+
 public class Employee
 {
     public int Id { get; set; }
