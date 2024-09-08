@@ -25,24 +25,54 @@ List<Department> departmentList = Data.GetDepartments();
 //// ###############################
 //// OrderBy Operator - Query Syntax
 //// ###############################
-var results = from emp in empolyeeList
-              join dept in departmentList
-              on emp.DepartmentId equals dept.Id
-              orderby emp.DepartmentId, emp.AnnualSalary descending
-              select new
-              {
-                  Id = emp.Id,
-                  FirstName = emp.FirstName,
-                  LastName = emp.LastName,
-                  AnnualSalary = emp.AnnualSalary,
-                  DepartmentId = dept.Id,
-                  DepartmentName = dept.LongName,
-              };
+//var results = from emp in empolyeeList
+//              join dept in departmentList
+//              on emp.DepartmentId equals dept.Id
+//              orderby emp.DepartmentId, emp.AnnualSalary descending
+//              select new
+//              {
+//                  Id = emp.Id,
+//                  FirstName = emp.FirstName,
+//                  LastName = emp.LastName,
+//                  AnnualSalary = emp.AnnualSalary,
+//                  DepartmentId = dept.Id,
+//                  DepartmentName = dept.LongName,
+//              };
 
-foreach (var result in results)
-{
-    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
-}
+//foreach (var result in results)
+//{
+//    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
+//}
+
+//// #################################
+//// ToLookup Operator - Method Syntax
+//// #################################
+//var groupResult = empolyeeList.OrderBy(o => o.DepartmentId).ToLookup(e => e.DepartmentId);
+
+//foreach (var empGroup in groupResult)
+//{
+//    Console.WriteLine($"Department Id: {empGroup.Key}");
+//    foreach (Employee emp in empGroup)
+//    {
+//        Console.WriteLine($"\tEmployee Fullname: {emp.FirstName} {emp.LastName}");
+//    }
+//}
+
+//// ###############################
+//// GroupBy Operator - Query Syntax
+//// ###############################
+//var groupResult = from emp in empolyeeList
+//                  orderby emp.Id
+//                  group emp by emp.DepartmentId;
+
+//foreach (var empGroup in groupResult)
+//{
+//    Console.WriteLine($"Department Id: {empGroup.Key}");
+//    foreach (Employee emp in empGroup)
+//    {
+//        Console.WriteLine($"\tEmployee Fullname: {emp.FirstName} {emp.LastName}");
+//    }
+//}
 
 public class Employee
 {
