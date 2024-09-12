@@ -74,6 +74,32 @@ List<Department> departmentList = Data.GetDepartments();
 //    }
 //}
 
+//// #######################################
+//// All, Any, Contains Quantifier Operators
+//// #######################################
+var annualSalaryCompare = 20000;
+
+bool isTrueAll = empolyeeList.All(e => e.AnnualSalary > annualSalaryCompare);
+if (isTrueAll)
+{
+    Console.WriteLine($"All employee annual salaries are above {annualSalaryCompare}");
+}
+else
+{
+    Console.WriteLine($"Not all employee annual salaries are above {annualSalaryCompare}");
+}
+
+bool isTrueAny = empolyeeList.Any(e => e.AnnualSalary > annualSalaryCompare);
+if (isTrueAll)
+{
+    Console.WriteLine($"At least one employee has an annual salary above {annualSalaryCompare}");
+}
+else
+{
+    Console.WriteLine($"No employees have an annual salary above {annualSalaryCompare}");
+}
+
+
 public class Employee
 {
     public int Id { get; set; }
