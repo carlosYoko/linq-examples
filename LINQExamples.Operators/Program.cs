@@ -1,4 +1,6 @@
-﻿List<Employee> empolyeeList = Data.GetEmployees();
+﻿using System.Diagnostics.CodeAnalysis;
+
+List<Employee> empolyeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
 
 //// ############################################
@@ -77,28 +79,68 @@ List<Department> departmentList = Data.GetDepartments();
 //// #######################################
 //// All, Any, Contains Quantifier Operators
 //// #######################################
-var annualSalaryCompare = 20000;
+//var annualSalaryCompare = 20000;
+//bool isTrueAll = empolyeeList.All(e => e.AnnualSalary > annualSalaryCompare);
 
-bool isTrueAll = empolyeeList.All(e => e.AnnualSalary > annualSalaryCompare);
-if (isTrueAll)
+//if (isTrueAll)
+//{
+//    Console.WriteLine($"All employee annual salaries are above {annualSalaryCompare}");
+//}
+//else
+//{
+//    Console.WriteLine($"Not all employee annual salaries are above {annualSalaryCompare}");
+//}
+
+//bool isTrueAny = empolyeeList.Any(e => e.AnnualSalary > annualSalaryCompare);
+//if (isTrueAll)
+//{
+//    Console.WriteLine($"At least one employee has an annual salary above {annualSalaryCompare}");
+//}
+//else
+//{
+//    Console.WriteLine($"No employees have an annual salary above {annualSalaryCompare}");
+//}
+
+
+//// #################
+//// Contains Operator
+//// #################
+var searchEmployee = new Employee()
 {
-    Console.WriteLine($"All employee annual salaries are above {annualSalaryCompare}");
+    Id = 3,
+    FirstName = "Bob",
+    LastName = "Marley",
+    AnnualSalary = 40000,
+    IsManager = false,
+    DepartmentId = 2,
+};
+bool containsEmployee = empolyeeList.Contains(searchEmployee, new EmployeeComparer());
+
+if (containsEmployee)
+{
+    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was found");
 }
 else
 {
-    Console.WriteLine($"Not all employee annual salaries are above {annualSalaryCompare}");
+    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was not found");
 }
 
-bool isTrueAny = empolyeeList.Any(e => e.AnnualSalary > annualSalaryCompare);
-if (isTrueAll)
+public class EmployeeComparer : IEqualityComparer<Employee>
 {
-    Console.WriteLine($"At least one employee has an annual salary above {annualSalaryCompare}");
-}
-else
-{
-    Console.WriteLine($"No employees have an annual salary above {annualSalaryCompare}");
-}
+    public bool Equals(Employee? x, Employee? y)
+    {
+        if (x.Id == y.Id && x.FirstName == y.FirstName && x.LastName == y.LastName)
+        {
+            return true;
+        }
+        return false;
+    }
 
+    public int GetHashCode([DisallowNull] Employee obj)
+    {
+        return obj.Id.GetHashCode();
+    }
+}
 
 public class Employee
 {
