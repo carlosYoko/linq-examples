@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 
 List<Employee> empolyeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
@@ -105,24 +106,39 @@ List<Department> departmentList = Data.GetDepartments();
 //// #################
 //// Contains Operator
 //// #################
-var searchEmployee = new Employee()
-{
-    Id = 3,
-    FirstName = "Bob",
-    LastName = "Marley",
-    AnnualSalary = 40000,
-    IsManager = false,
-    DepartmentId = 2,
-};
-bool containsEmployee = empolyeeList.Contains(searchEmployee, new EmployeeComparer());
+//var searchEmployee = new Employee()
+//{
+//    Id = 3,
+//    FirstName = "Bob",
+//    LastName = "Marley",
+//    AnnualSalary = 40000,
+//    IsManager = false,
+//    DepartmentId = 2,
+//};
+//bool containsEmployee = empolyeeList.Contains(searchEmployee, new EmployeeComparer());
 
-if (containsEmployee)
+//if (containsEmployee)
+//{
+//    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was found");
+//}
+//else
+//{
+//    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was not found");
+//}
+
+//// #######################
+//// OffType filter Operator
+//// #######################
+ArrayList mixedCollection = Data.GetHeterogenousDataCollection();
+var stringResult = from s in mixedCollection.OfType<string>()
+                   select s;
+
+var intResult = from s in mixedCollection.OfType<int>()
+                select s;
+
+foreach (var i in intResult)
 {
-    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was found");
-}
-else
-{
-    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was not found");
+    Console.WriteLine(i);
 }
 
 public class EmployeeComparer : IEqualityComparer<Employee>
@@ -241,5 +257,22 @@ public static class Data
         deparments.Add(deparment);
 
         return deparments;
+    }
+
+    public static ArrayList GetHeterogenousDataCollection()
+    {
+        ArrayList arrayList = new ArrayList();
+
+        arrayList.Add(100);
+        arrayList.Add("Richard Stallman");
+        arrayList.Add(2000);
+        arrayList.Add(3000);
+        arrayList.Add("Linus Torvalds");
+        arrayList.Add(new Employee() { Id = 6, FirstName = "Bob", LastName = "Dylan", AnnualSalary = 70000, IsManager = false, DepartmentId = 4 });
+        arrayList.Add(new Employee() { Id = 7, FirstName = "Keit", LastName = "Richards", AnnualSalary = 80000, IsManager = false, DepartmentId = 5 });
+        arrayList.Add(new Department() { Id = 4, ShortName = "R&D", LongName = "Research and Development" });
+        arrayList.Add(new Department() { Id = 5, ShortName = "MKT", LongName = "Marketing" });
+
+        return arrayList;
     }
 }
