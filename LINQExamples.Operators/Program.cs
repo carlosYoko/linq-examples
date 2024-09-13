@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 
-List<Employee> empolyeeList = Data.GetEmployees();
+List<Employee> employeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
 
 //// ############################################
 //// OrderBy and ThenBy Operators - Method Syntax
 //// ############################################
-//var results = empolyeeList.Join(departmentList,
+//var results = employeeList.Join(departmentList,
 //        e => e.DepartmentId,
 //        d => d.Id,
 //        (emp, dept) => new
@@ -29,7 +29,7 @@ List<Department> departmentList = Data.GetDepartments();
 //// ###############################
 //// OrderBy Operator - Query Syntax
 //// ###############################
-//var results = from emp in empolyeeList
+//var results = from emp in employeeList
 //              join dept in departmentList
 //              on emp.DepartmentId equals dept.Id
 //              orderby emp.DepartmentId, emp.AnnualSalary descending
@@ -52,7 +52,7 @@ List<Department> departmentList = Data.GetDepartments();
 //// #################################
 //// ToLookup Operator - Method Syntax
 //// #################################
-//var groupResult = empolyeeList.OrderBy(o => o.DepartmentId).ToLookup(e => e.DepartmentId);
+//var groupResult = employeeList.OrderBy(o => o.DepartmentId).ToLookup(e => e.DepartmentId);
 
 //foreach (var empGroup in groupResult)
 //{
@@ -67,7 +67,7 @@ List<Department> departmentList = Data.GetDepartments();
 //// ###############################
 //// GroupBy Operator - Query Syntax
 //// ###############################
-//var groupResult = from emp in empolyeeList
+//var groupResult = from emp in employeeList
 //                  orderby emp.Id
 //                  group emp by emp.DepartmentId;
 
@@ -85,7 +85,7 @@ List<Department> departmentList = Data.GetDepartments();
 //// All, Any, Contains Quantifier Operators
 //// #######################################
 //var annualSalaryCompare = 20000;
-//bool isTrueAll = empolyeeList.All(e => e.AnnualSalary > annualSalaryCompare);
+//bool isTrueAll = employeeList.All(e => e.AnnualSalary > annualSalaryCompare);
 
 //if (isTrueAll)
 //{
@@ -96,7 +96,7 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine($"Not all employee annual salaries are above {annualSalaryCompare}");
 //}
 
-//bool isTrueAny = empolyeeList.Any(e => e.AnnualSalary > annualSalaryCompare);
+//bool isTrueAny = employeeList.Any(e => e.AnnualSalary > annualSalaryCompare);
 //if (isTrueAll)
 //{
 //    Console.WriteLine($"At least one employee has an annual salary above {annualSalaryCompare}");
@@ -119,7 +119,7 @@ List<Department> departmentList = Data.GetDepartments();
 //    IsManager = false,
 //    DepartmentId = 2,
 //};
-//bool containsEmployee = empolyeeList.Contains(searchEmployee, new EmployeeComparer());
+//bool containsEmployee = employeeList.Contains(searchEmployee, new EmployeeComparer());
 
 //if (containsEmployee)
 //{
@@ -148,10 +148,10 @@ List<Department> departmentList = Data.GetDepartments();
 // #######################################
 // ElementAt, ElementAtOrDefault Operators
 // #######################################
-//var emp = empolyeeList.ElementAt(2);
+//var emp = employeeList.ElementAt(2);
 //Console.WriteLine($"{emp.Id,-5} {emp.FirstName,-10} {emp.LastName,-10}");
 
-//var emp = empolyeeList.ElementAtOrDefault(999);
+//var emp = employeeList.ElementAtOrDefault(999);
 //if (emp != null) Console.WriteLine($"{emp.Id,-5} {emp.FirstName,-10} {emp.LastName,-10}");
 //else Console.WriteLine("This employee record does nort exist within the collection"); ;
 
@@ -159,13 +159,24 @@ List<Department> departmentList = Data.GetDepartments();
 //// #####################################################
 //// First, FirstOrDedfault, Last, LastOrDefault Operators
 //// #####################################################
-List<int> integerList = new List<int>() { 1, 5, 6, 7, 9, 8 };
+//List<int> integerList = new List<int>() { 1, 5, 6, 7, 9, 8 };
 
-int firstResult = integerList.First();
-int firstOddResult = integerList.First(i => i % 2 == 0);
+//int firstResult = integerList.First();
+//int firstOddResult = integerList.First(i => i % 2 == 0);
 
-int lastResult = integerList.Last();
-int lastOddResult = integerList.Last(i => i % 2 == 0);
+//int lastResult = integerList.Last();
+//int lastOddResult = integerList.Last(i => i % 2 == 0);
+
+Console.ReadKey();
+
+
+//// #################################
+//// Single, SingLeOrDefault Operators
+//// #################################
+var employeeSingle = employeeList.Single();
+var employeeSingleOrDefault = employeeList.SingleOrDefault(e => e.Id == 2);
+
+Console.ReadKey();
 
 
 public class EmployeeComparer : IEqualityComparer<Employee>
