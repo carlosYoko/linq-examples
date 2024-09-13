@@ -4,175 +4,175 @@ using System.Diagnostics.CodeAnalysis;
 List<Employee> employeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
 
-//// ############################################
-//// OrderBy and ThenBy Operators - Method Syntax
-//// ############################################
-//var results = employeeList.Join(departmentList,
-//        e => e.DepartmentId,
-//        d => d.Id,
-//        (emp, dept) => new
-//        {
-//            Id = emp.Id,
-//            FirstName = emp.FirstName,
-//            LastName = emp.LastName,
-//            AnnualSalary = emp.AnnualSalary,
-//            DepartmentId = dept.Id,
-//            DepartmentName = dept.LongName,
-//        }).OrderBy(o => o.FirstName).ThenBy(o => o.AnnualSalary);
+// ############################################
+// OrderBy and ThenBy Operators - Method Syntax
+// ############################################
+var results = employeeList.Join(departmentList,
+        e => e.DepartmentId,
+        d => d.Id,
+        (emp, dept) => new
+        {
+            Id = emp.Id,
+            FirstName = emp.FirstName,
+            LastName = emp.LastName,
+            AnnualSalary = emp.AnnualSalary,
+            DepartmentId = dept.Id,
+            DepartmentName = dept.LongName,
+        }).OrderBy(o => o.FirstName).ThenBy(o => o.AnnualSalary);
 
-//foreach (var result in results)
-//{
-//    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
-//}
-
-
-//// ###############################
-//// OrderBy Operator - Query Syntax
-//// ###############################
-//var results = from emp in employeeList
-//              join dept in departmentList
-//              on emp.DepartmentId equals dept.Id
-//              orderby emp.DepartmentId, emp.AnnualSalary descending
-//              select new
-//              {
-//                  Id = emp.Id,
-//                  FirstName = emp.FirstName,
-//                  LastName = emp.LastName,
-//                  AnnualSalary = emp.AnnualSalary,
-//                  DepartmentId = dept.Id,
-//                  DepartmentName = dept.LongName,
-//              };
-
-//foreach (var result in results)
-//{
-//    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
-//}
+foreach (var result in results)
+{
+    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
+}
 
 
-//// #################################
-//// ToLookup Operator - Method Syntax
-//// #################################
-//var groupResult = employeeList.OrderBy(o => o.DepartmentId).ToLookup(e => e.DepartmentId);
+// ###############################
+// OrderBy Operator - Query Syntax
+// ###############################
+var results = from emp in employeeList
+              join dept in departmentList
+              on emp.DepartmentId equals dept.Id
+              orderby emp.DepartmentId, emp.AnnualSalary descending
+              select new
+              {
+                  Id = emp.Id,
+                  FirstName = emp.FirstName,
+                  LastName = emp.LastName,
+                  AnnualSalary = emp.AnnualSalary,
+                  DepartmentId = dept.Id,
+                  DepartmentName = dept.LongName,
+              };
 
-//foreach (var empGroup in groupResult)
-//{
-//    Console.WriteLine($"Department Id: {empGroup.Key}");
-//    foreach (Employee emp in empGroup)
-//    {
-//        Console.WriteLine($"\tEmployee Fullname: {emp.FirstName} {emp.LastName}");
-//    }
-//}
-
-
-//// ###############################
-//// GroupBy Operator - Query Syntax
-//// ###############################
-//var groupResult = from emp in employeeList
-//                  orderby emp.Id
-//                  group emp by emp.DepartmentId;
-
-//foreach (var empGroup in groupResult)
-//{
-//    Console.WriteLine($"Department Id: {empGroup.Key}");
-//    foreach (Employee emp in empGroup)
-//    {
-//        Console.WriteLine($"\tEmployee Fullname: {emp.FirstName} {emp.LastName}");
-//    }
-//}
+foreach (var result in results)
+{
+    Console.WriteLine($"First Name: {result.FirstName,-10} Last Name: {result.LastName,-10} Annual Salary: {result.AnnualSalary,10}\tDepartment name: {result.DepartmentName}");
+}
 
 
-//// #######################################
-//// All, Any, Contains Quantifier Operators
-//// #######################################
-//var annualSalaryCompare = 20000;
-//bool isTrueAll = employeeList.All(e => e.AnnualSalary > annualSalaryCompare);
+// #################################
+// ToLookup Operator - Method Syntax
+// #################################
+var groupResult = employeeList.OrderBy(o => o.DepartmentId).ToLookup(e => e.DepartmentId);
 
-//if (isTrueAll)
-//{
-//    Console.WriteLine($"All employee annual salaries are above {annualSalaryCompare}");
-//}
-//else
-//{
-//    Console.WriteLine($"Not all employee annual salaries are above {annualSalaryCompare}");
-//}
-
-//bool isTrueAny = employeeList.Any(e => e.AnnualSalary > annualSalaryCompare);
-//if (isTrueAll)
-//{
-//    Console.WriteLine($"At least one employee has an annual salary above {annualSalaryCompare}");
-//}
-//else
-//{
-//    Console.WriteLine($"No employees have an annual salary above {annualSalaryCompare}");
-//}
+foreach (var empGroup in groupResult)
+{
+    Console.WriteLine($"Department Id: {empGroup.Key}");
+    foreach (Employee emp in empGroup)
+    {
+        Console.WriteLine($"\tEmployee Fullname: {emp.FirstName} {emp.LastName}");
+    }
+}
 
 
-//// #################
-//// Contains Operator
-//// #################
-//var searchEmployee = new Employee()
-//{
-//    Id = 3,
-//    FirstName = "Bob",
-//    LastName = "Marley",
-//    AnnualSalary = 40000,
-//    IsManager = false,
-//    DepartmentId = 2,
-//};
-//bool containsEmployee = employeeList.Contains(searchEmployee, new EmployeeComparer());
+// ###############################
+// GroupBy Operator - Query Syntax
+// ###############################
+var groupResult = from emp in employeeList
+                  orderby emp.Id
+                  group emp by emp.DepartmentId;
 
-//if (containsEmployee)
-//{
-//    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was found");
-//}
-//else
-//{
-//    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was not found");
-//}
+foreach (var empGroup in groupResult)
+{
+    Console.WriteLine($"Department Id: {empGroup.Key}");
+    foreach (Employee emp in empGroup)
+    {
+        Console.WriteLine($"\tEmployee Fullname: {emp.FirstName} {emp.LastName}");
+    }
+}
 
-//// #######################
-//// OffType filter Operator
-//// #######################
-//ArrayList mixedCollection = Data.GetHeterogenousDataCollection();
-//var stringResult = from s in mixedCollection.OfType<string>()
-//                   select s;
-
-//var intResult = from s in mixedCollection.OfType<int>()
-//                select s;
-
-//foreach (var i in intResult)
-//{
-//    Console.WriteLine(i 
-//}
 
 // #######################################
-// ElementAt, ElementAtOrDefault Operators
+// All, Any, Contains Quantifier Operators
 // #######################################
-//var emp = employeeList.ElementAt(2);
-//Console.WriteLine($"{emp.Id,-5} {emp.FirstName,-10} {emp.LastName,-10}");
+var annualSalaryCompare = 20000;
+bool isTrueAll = employeeList.All(e => e.AnnualSalary > annualSalaryCompare);
 
-//var emp = employeeList.ElementAtOrDefault(999);
-//if (emp != null) Console.WriteLine($"{emp.Id,-5} {emp.FirstName,-10} {emp.LastName,-10}");
-//else Console.WriteLine("This employee record does nort exist within the collection"); ;
+if (isTrueAll)
+{
+    Console.WriteLine($"All employee annual salaries are above {annualSalaryCompare}");
+}
+else
+{
+    Console.WriteLine($"Not all employee annual salaries are above {annualSalaryCompare}");
+}
+
+bool isTrueAny = employeeList.Any(e => e.AnnualSalary > annualSalaryCompare);
+if (isTrueAll)
+{
+    Console.WriteLine($"At least one employee has an annual salary above {annualSalaryCompare}");
+}
+else
+{
+    Console.WriteLine($"No employees have an annual salary above {annualSalaryCompare}");
+}
 
 
-//// #####################################################
-//// First, FirstOrDedfault, Last, LastOrDefault Operators
-//// #####################################################
-//List<int> integerList = new List<int>() { 1, 5, 6, 7, 9, 8 };
+// #################
+// Contains Operator
+// #################
+var searchEmployee = new Employee()
+{
+    Id = 3,
+    FirstName = "Bob",
+    LastName = "Marley",
+    AnnualSalary = 40000,
+    IsManager = false,
+    DepartmentId = 2,
+};
+bool containsEmployee = employeeList.Contains(searchEmployee, new EmployeeComparer());
 
-//int firstResult = integerList.First();
-//int firstOddResult = integerList.First(i => i % 2 == 0);
+if (containsEmployee)
+{
+    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was found");
+}
+else
+{
+    Console.WriteLine($"An employee record for {searchEmployee.FirstName} {searchEmployee.LastName} was not found");
+}
 
-//int lastResult = integerList.Last();
-//int lastOddResult = integerList.Last(i => i % 2 == 0);
+// #######################
+// OffType filter Operator
+// #######################
+ArrayList mixedCollection = Data.GetHeterogenousDataCollection();
+var stringResult = from s in mixedCollection.OfType<string>()
+                   select s;
+
+var intResult = from s in mixedCollection.OfType<int>()
+                select s;
+
+foreach (var i in intResult)
+{
+    Console.WriteLine(i
+}
+
+#######################################
+ElementAt, ElementAtOrDefault Operators
+ #######################################
+var emp = employeeList.ElementAt(2);
+Console.WriteLine($"{emp.Id,-5} {emp.FirstName,-10} {emp.LastName,-10}");
+
+var emp = employeeList.ElementAtOrDefault(999);
+if (emp != null) Console.WriteLine($"{emp.Id,-5} {emp.FirstName,-10} {emp.LastName,-10}");
+else Console.WriteLine("This employee record does nort exist within the collection"); ;
+
+
+// #####################################################
+// First, FirstOrDedfault, Last, LastOrDefault Operators
+// #####################################################
+List<int> integerList = new List<int>() { 1, 5, 6, 7, 9, 8 };
+
+int firstResult = integerList.First();
+int firstOddResult = integerList.First(i => i % 2 == 0);
+
+int lastResult = integerList.Last();
+int lastOddResult = integerList.Last(i => i % 2 == 0);
 
 Console.ReadKey();
 
 
-//// #################################
-//// Single, SingLeOrDefault Operators
-//// #################################
+// #################################
+// Single, SingLeOrDefault Operators
+// #################################
 var employeeSingle = employeeList.Single();
 var employeeSingleOrDefault = employeeList.SingleOrDefault(e => e.Id == 2);
 
