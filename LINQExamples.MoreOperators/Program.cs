@@ -1,18 +1,32 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿
+using System.Diagnostics.CodeAnalysis;
 
-List<Employee> empolyeeList = Data.GetEmployees();
+List<Employee> employeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
 
-// ######################
-// SequenceEqual Operator
-// ######################
-var integerList1 = new List<int> { 1, 2, 3, 4, 5, 6 };
-var integerList2 = new List<int> { 1, 2, 3, 4, 5, 6 };
-var boolSequenceEqual = integerList1.SequenceEqual(integerList2);
+//// ######################
+//// SequenceEqual Operator
+//// ######################
+//var integerList1 = new List<int> { 1, 2, 3, 4, 5, 6 };
+//var integerList2 = new List<int> { 1, 2, 3, 4, 5, 6 };
+//var boolSequenceEqual = integerList1.SequenceEqual(integerList2);
 
-var employeeList1 = Data.GetEmployees();
-var employeeList2 = Data.GetEmployees();
-var boolSequenceEmployee = employeeList1.SequenceEqual(employeeList2, new EmployeeComparer());
+//var employeeList1 = Data.GetEmployees();
+//var employeeList2 = Data.GetEmployees();
+//var boolSequenceEmployee = employeeList1.SequenceEqual(employeeList2, new EmployeeComparer());
+
+
+//// ###############
+//// Concat Operator
+//// ###############
+List<int> integerList1 = new List<int> { 1, 2, 3, 4 };
+List<int> integerList2 = new List<int> { 5, 6, 7, 8 };
+IEnumerable<int> integerListConcat = integerList1.Concat(integerList2);
+
+List<Employee> employeeList2 = new List<Employee> { new Employee() { Id = 5, FirstName = "Ayrton", LastName = "Senna" } };
+IEnumerable<Employee> results = employeeList.Concat(employeeList2);
+
+
 
 Console.ReadKey();
 
