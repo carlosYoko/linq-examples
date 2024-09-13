@@ -1,6 +1,37 @@
-﻿List<Employee> empolyeeList = Data.GetEmployees();
+﻿using System.Diagnostics.CodeAnalysis;
+
+List<Employee> empolyeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
 
+// ######################
+// SequenceEqual Operator
+// ######################
+var integerList1 = new List<int> { 1, 2, 3, 4, 5, 6 };
+var integerList2 = new List<int> { 1, 2, 3, 4, 5, 6 };
+var boolSequenceEqual = integerList1.SequenceEqual(integerList2);
+
+var employeeList1 = Data.GetEmployees();
+var employeeList2 = Data.GetEmployees();
+var boolSequenceEmployee = employeeList1.SequenceEqual(employeeList2, new EmployeeComparer());
+
+Console.ReadKey();
+
+public class EmployeeComparer : IEqualityComparer<Employee>
+{
+    public bool Equals(Employee? x, Employee? y)
+    {
+        if (x.Id == y.Id && x.FirstName == y.FirstName && x.LastName == y.LastName)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public int GetHashCode([DisallowNull] Employee obj)
+    {
+        return obj.Id.GetHashCode();
+    }
+}
 
 public class Employee
 {
