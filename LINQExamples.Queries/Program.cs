@@ -1,123 +1,123 @@
 ﻿List<Employee> empolyeeList = Data.GetEmployees();
 List<Department> departmentList = Data.GetDepartments();
 
-//// ##########################################
-//// Select and WHere Operators - Method Syntax
-//// ##########################################
-//var results = empolyeeList.Select(e => new
-//{
-//    FullName = e.FirstName + " " + e.LastName,
-//    AnnualSalary = e.AnnualSalary,
-//}).Where(e => e.AnnualSalary > 50000);
+// ##########################################
+// Select and WHere Operators - Method Syntax
+// ##########################################
+var results = empolyeeList.Select(e => new
+{
+    FullName = e.FirstName + " " + e.LastName,
+    AnnualSalary = e.AnnualSalary,
+}).Where(e => e.AnnualSalary > 50000);
 
-//foreach (var result in results)
-//{
-//    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
-//}
+foreach (var result in results)
+{
+    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+}
 
-//// #########################################
-//// Select and WHere Operators - Query Syntax
-//// #########################################
-//var results = from emp in empolyeeList
-//              where emp.AnnualSalary > 50000
-//              select new
-//              {
-//                  FullName = emp.FirstName + " " + emp.LastName,
-//                  AnnualSalary = emp.AnnualSalary
-//              };
+// #########################################
+// Select and WHere Operators - Query Syntax
+// #########################################
+var results = from emp in empolyeeList
+              where emp.AnnualSalary > 50000
+              select new
+              {
+                  FullName = emp.FirstName + " " + emp.LastName,
+                  AnnualSalary = emp.AnnualSalary
+              };
 
-//foreach (var result in results)
-//{
-//    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
-//}
+foreach (var result in results)
+{
+    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+}
 
-//// ##########################
-//// Deffered Execution example
-//// ##########################
-//var results = from emp in empolyeeList.GetHighSalariedEmployees()
-//              select new
-//              {
-//                  FullName = emp.FirstName + " " + emp.LastName,
-//                  AnnualSalary = emp.AnnualSalary
-//              };
+// ##########################
+// Deffered Execution example
+// ##########################
+var results = from emp in empolyeeList.GetHighSalariedEmployees()
+              select new
+              {
+                  FullName = emp.FirstName + " " + emp.LastName,
+                  AnnualSalary = emp.AnnualSalary
+              };
 
-//foreach (var result in results)
-//{
-//    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
-//}
+foreach (var result in results)
+{
+    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+}
 
-//// ###########################
-//// Inmediate Execution example
-//// ###########################
-//var results = (from emp in empolyeeList.GetHighSalariedEmployees()
-//               select new
-//               {
-//                   FullName = emp.FirstName + " " + emp.LastName,
-//                   AnnualSalary = emp.AnnualSalary
-//               }).ToList();
+// ###########################
+// Inmediate Execution example
+// ###########################
+var results = (from emp in empolyeeList.GetHighSalariedEmployees()
+               select new
+               {
+                   FullName = emp.FirstName + " " + emp.LastName,
+                   AnnualSalary = emp.AnnualSalary
+               }).ToList();
 
-//foreach (var result in results)
-//{
-//    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
-//}
+foreach (var result in results)
+{
+    Console.WriteLine(result.FullName + " " + result.AnnualSalary);
+}
 
-//// ######################################
-//// Join Operation example - Method Syntax
-//// ######################################
-//var results = departmentList.Join(empolyeeList,
-//        department => department.Id,
-//        empolyeeList => empolyeeList.DepartmentId,
-//        (department, empolyeeList) => new
-//        {
-//            FullName = empolyeeList.FirstName + " " + empolyeeList.LastName,
-//            AnnualSalary = empolyeeList.AnnualSalary,
-//            DepartmentName = department.LongName
-//        }
-//     );
+// ######################################
+// Join Operation example - Method Syntax
+// ######################################
+var results = departmentList.Join(empolyeeList,
+        department => department.Id,
+        empolyeeList => empolyeeList.DepartmentId,
+        (department, empolyeeList) => new
+        {
+            FullName = empolyeeList.FirstName + " " + empolyeeList.LastName,
+            AnnualSalary = empolyeeList.AnnualSalary,
+            DepartmentName = department.LongName
+        }
+     );
 
-//foreach (var result in results)
-//{
-//    Console.WriteLine($"{result.FullName,-20} {result.AnnualSalary,10} {result.DepartmentName}");
-//}
+foreach (var result in results)
+{
+    Console.WriteLine($"{result.FullName,-20} {result.AnnualSalary,10} {result.DepartmentName}");
+}
 
-//// #####################################
-//// Join Operation example - Query Syntax
-//// #####################################
-//var results = from dept in departmentList
-//              join emp in empolyeeList
-//              on dept.Id equals emp.DepartmentId
-//              select new
-//              {
-//                  FullName = emp.FirstName + " " + emp.LastName,
-//                  AnnualSalary = emp.AnnualSalary,
-//                  DepartmentName = dept.LongName
-//              };
+// #####################################
+// Join Operation example - Query Syntax
+// #####################################
+var results = from dept in departmentList
+              join emp in empolyeeList
+              on dept.Id equals emp.DepartmentId
+              select new
+              {
+                  FullName = emp.FirstName + " " + emp.LastName,
+                  AnnualSalary = emp.AnnualSalary,
+                  DepartmentName = dept.LongName
+              };
 
-//foreach (var result in results)
-//{
-//    Console.WriteLine($"{result.FullName,-20} {result.AnnualSalary,10} {result.DepartmentName}");
-//}
+foreach (var result in results)
+{
+    Console.WriteLine($"{result.FullName,-20} {result.AnnualSalary,10} {result.DepartmentName}");
+}
 
-//// ############################################
-//// Group Join Operation example - Method Syntax
-//// ############################################
-//var results = departmentList.GroupJoin(empolyeeList,
-//        dept => dept.Id,
-//        emp => emp.DepartmentId,
-//        (department, employeeGroup) => new
-//        {
-//            Employees = employeeGroup,
-//            DepartmentName = department.LongName
-//        });
+// ############################################
+// Group Join Operation example - Method Syntax
+// ############################################
+var results = departmentList.GroupJoin(empolyeeList,
+        dept => dept.Id,
+        emp => emp.DepartmentId,
+        (department, employeeGroup) => new
+        {
+            Employees = employeeGroup,
+            DepartmentName = department.LongName
+        });
 
-//foreach (var result in results)
-//{
-//    Console.WriteLine($"Department name: {result.DepartmentName}");
-//    foreach (var item in result.Employees)
-//    {
-//        Console.WriteLine($"\t{item.FirstName} {item.LastName}");
-//    }
-//}
+foreach (var result in results)
+{
+    Console.WriteLine($"Department name: {result.DepartmentName}");
+    foreach (var item in result.Employees)
+    {
+        Console.WriteLine($"\t{item.FirstName} {item.LastName}");
+    }
+}
 
 //// ###########################################
 //// Group Join Operation example - Query Syntax
