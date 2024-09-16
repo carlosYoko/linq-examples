@@ -19,14 +19,58 @@ List<Department> departmentList = Data.GetDepartments();
 //// ###############
 //// Concat Operator
 //// ###############
-List<int> integerList1 = new List<int> { 1, 2, 3, 4 };
-List<int> integerList2 = new List<int> { 5, 6, 7, 8 };
-IEnumerable<int> integerListConcat = integerList1.Concat(integerList2);
+//List<int> integerList1 = new List<int> { 1, 2, 3, 4 };
+//List<int> integerList2 = new List<int> { 5, 6, 7, 8 };
+//IEnumerable<int> integerListConcat = integerList1.Concat(integerList2);
 
-List<Employee> employeeList2 = new List<Employee> { new Employee() { Id = 5, FirstName = "Ayrton", LastName = "Senna" } };
-IEnumerable<Employee> results = employeeList.Concat(employeeList2);
+//List<Employee> employeeList2 = new List<Employee> { new Employee() { Id = 5, FirstName = "Ayrton", LastName = "Senna" } };
+//IEnumerable<Employee> results = employeeList.Concat(employeeList2);
 
 
+//// ###################
+//// Aggregate Operators
+//// ###################
+//// Aggregate
+//decimal totalAnnualSalary = employeeList.Aggregate<Employee, decimal>(0, (totalAnnualSalary, e) =>
+//{
+//    var bonus = (e.IsManager) ? 0.04m : 0.02m;
+//    totalAnnualSalary = (e.AnnualSalary + (e.AnnualSalary * bonus)) + totalAnnualSalary;
+
+//    return totalAnnualSalary;
+//});
+
+//Console.WriteLine($"Total annual salary of all employees: {totalAnnualSalary}");
+
+//string data = employeeList.Aggregate<Employee, string>("Employee Annual Salaries (including bouns):\n",
+//    (s, e) =>
+//    {
+//        var bonus = (e.IsManager) ? 0.04m : 0.02m;
+//        s += $"{e.FirstName} {e.LastName} - {e.AnnualSalary + (e.AnnualSalary * bonus)}\n";
+//        return s;
+//    }
+//    );
+
+//Console.WriteLine(data);
+
+//// Average
+//decimal average = employeeList.Average(e => e.AnnualSalary);
+//Console.WriteLine($"Average annual salary: {average}");
+
+//// Count
+//int countEmployees = employeeList.Count();
+//Console.WriteLine($"Number of Employees: {countEmployees}");
+
+//int countEmployeesInDepartment = employeeList.Count(e => e.DepartmentId == 2);
+//var department = departmentList.Where(e => e.Id == 2).FirstOrDefault();
+//Console.WriteLine($"Number of Employees in {department.LongName} department: {countEmployeesInDepartment}");
+
+//// Sum
+//decimal result = employeeList.Sum(e => e.AnnualSalary);
+//Console.WriteLine($"Total Annual Salaires: {result}");
+
+//// Max
+//decimal result = employeeList.Max(e => e.AnnualSalary);
+//Console.WriteLine($"Max Annual Salary: {result}");
 
 Console.ReadKey();
 
