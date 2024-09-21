@@ -72,7 +72,19 @@ List<Department> departmentList = Data.GetDepartments();
 //decimal result = employeeList.Max(e => e.AnnualSalary);
 //Console.WriteLine($"Max Annual Salary: {result}");
 
-Console.ReadKey();
+//// ###################
+//// Generation Operators
+//// ###################
+//// DefaultIfEmpty
+List<int> intList = new List<int>();
+var newList = intList.DefaultIfEmpty();
+Console.WriteLine(newList.ElementAt(0));
+
+List<Employee> employees = new List<Employee>();
+var newList2 = employees.DefaultIfEmpty(new Employee { Id = 0 });
+var result = newList2.ElementAt(0);
+if (result.Id == 0) Console.WriteLine("The list is empty");
+
 
 public class EmployeeComparer : IEqualityComparer<Employee>
 {
