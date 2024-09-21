@@ -150,14 +150,22 @@ List<Department> departmentList = Data.GetDepartments();
 //// Partitioning Operators
 //// ######################
 //// Skip
-var results = employeeList.Skip(2);
-foreach (Employee employee in results)
+//var results = employeeList.Skip(2);
+//foreach (Employee employee in results)
+//{
+//    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
+//}
+
+//// ######################
+//// Partitioning Operators
+//// ######################
+//// SkipWhile
+var results = employeeList.SkipWhile(e => e.DepartmentId != 3).ToList();
+foreach (var employee in results)
 {
     Console.WriteLine($"{employee.FirstName} {employee.LastName}");
 }
 
-
-Console.ReadKey();
 
 public class EmployeeComparer : IEqualityComparer<Employee>
 {
@@ -214,7 +222,7 @@ public static class Data
             Id = 2,
             FirstName = "Sara",
             LastName = "Jameson",
-            AnnualSalary = 80000,
+            AnnualSalary = 40000,
             IsManager = true,
             DepartmentId = 2,
         };
@@ -225,7 +233,7 @@ public static class Data
             Id = 3,
             FirstName = "Bob",
             LastName = "Marley",
-            AnnualSalary = 40000,
+            AnnualSalary = 80000,
             IsManager = false,
             DepartmentId = 2,
         };
