@@ -174,16 +174,24 @@ List<Department> departmentList = Data.GetDepartments();
 //// Conversion Operators
 //// ####################
 //// ToList
-List<Employee> results = (from emp in employeeList
-                          where emp.AnnualSalary > 50000
-                          select emp).ToList();
+//List<Employee> results = (from emp in employeeList
+//                          where emp.AnnualSalary > 50000
+//                          select emp).ToList();
 
-foreach (var employee in results)
+//foreach (var employee in results)
+//{
+//    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
+//}
+
+//// ToDictionary
+Dictionary<int, Employee> dictionary = (from emp in employeeList
+                                        where emp.AnnualSalary > 50000
+                                        select emp).ToDictionary<Employee, int>(e => e.Id);
+
+foreach (var key in dictionary.Keys)
 {
-    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
+    Console.WriteLine($"Key: {key} Value: {dictionary[key].FirstName} {dictionary[key].LastName}");
 }
-
-
 public class EmployeeComparer : IEqualityComparer<Employee>
 {
     public bool Equals(Employee? x, Employee? y)
