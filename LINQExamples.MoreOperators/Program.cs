@@ -119,16 +119,23 @@ List<Department> departmentList = Data.GetDepartments();
 //}
 
 //// Except
+//IEnumerable<int> collection1 = new List<int>() { 1, 2, 3, 4 };
+//IEnumerable<int> collection2 = new List<int>() { 3, 4, 5, 6 };
+//var results = collection1.Except(collection2);
+//foreach (var result in results)
+//{
+//    Console.WriteLine(result);
+//}
+
+//// Intersect
 IEnumerable<int> collection1 = new List<int>() { 1, 2, 3, 4 };
 IEnumerable<int> collection2 = new List<int>() { 3, 4, 5, 6 };
-var results = collection1.Except(collection2);
+var results = collection1.Intersect(collection2);
 foreach (var result in results)
 {
     Console.WriteLine(result);
 }
 
-List<int> nums = new List<int> { 3, 1, 2, 45 };
-nums.Sort();
 
 Console.ReadKey();
 
