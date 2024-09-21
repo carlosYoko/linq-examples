@@ -128,9 +128,18 @@ List<Department> departmentList = Data.GetDepartments();
 //}
 
 //// Intersect
+//IEnumerable<int> collection1 = new List<int>() { 1, 2, 3, 4 };
+//IEnumerable<int> collection2 = new List<int>() { 3, 4, 5, 6 };
+//var results = collection1.Intersect(collection2);
+//foreach (var result in results)
+//{
+//    Console.WriteLine(result);
+//}
+
+//// Union
 IEnumerable<int> collection1 = new List<int>() { 1, 2, 3, 4 };
 IEnumerable<int> collection2 = new List<int>() { 3, 4, 5, 6 };
-var results = collection1.Intersect(collection2);
+var results = collection1.Union(collection2);
 foreach (var result in results)
 {
     Console.WriteLine(result);
