@@ -101,10 +101,21 @@ List<Department> departmentList = Data.GetDepartments();
 //}
 
 //// Repeat
-var strCollection = Enumerable.Repeat<string>("Placeholder", 10);
-foreach (var item in strCollection)
+//var strCollection = Enumerable.Repeat<string>("Placeholder", 10);
+//foreach (var item in strCollection)
+//{
+//    Console.WriteLine(item);
+//}
+
+//// #############
+//// Set Operators
+//// #############
+//// Distinct
+List<int> list = new List<int> { 2, 1, 3, 4, 5, 6, 7, 8, 4, 24, 5, 63, 2, 12, 3, 1 };
+var results = list.Distinct();
+foreach (var result in results)
 {
-    Console.WriteLine(item);
+    Console.WriteLine(result);
 }
 
 public class EmployeeComparer : IEqualityComparer<Employee>
