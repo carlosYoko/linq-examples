@@ -94,12 +94,18 @@ List<Department> departmentList = Data.GetDepartments();
 //}
 
 //// Range
-var intCollection = Enumerable.Range(25, 20);
-foreach (int item in intCollection)
+//var intCollection = Enumerable.Range(25, 20);
+//foreach (int item in intCollection)
+//{
+//    Console.WriteLine(item);
+//}
+
+//// Repeat
+var strCollection = Enumerable.Repeat<string>("Placeholder", 10);
+foreach (var item in strCollection)
 {
     Console.WriteLine(item);
 }
-
 
 public class EmployeeComparer : IEqualityComparer<Employee>
 {
