@@ -137,12 +137,23 @@ List<Department> departmentList = Data.GetDepartments();
 //}
 
 //// Union
-IEnumerable<int> collection1 = new List<int>() { 1, 2, 3, 4 };
-IEnumerable<int> collection2 = new List<int>() { 3, 4, 5, 6 };
-var results = collection1.Union(collection2);
-foreach (var result in results)
+//IEnumerable<int> collection1 = new List<int>() { 1, 2, 3, 4 };
+//IEnumerable<int> collection2 = new List<int>() { 3, 4, 5, 6 };
+//var results = collection1.Union(collection2);
+//foreach (var result in results)
+//{
+//    Console.WriteLine(result);
+//}
+
+
+//// ######################
+//// Partitioning Operators
+//// ######################
+//// Skip
+var results = employeeList.Skip(2);
+foreach (Employee employee in results)
 {
-    Console.WriteLine(result);
+    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
 }
 
 
