@@ -76,14 +76,22 @@ List<Department> departmentList = Data.GetDepartments();
 //// Generation Operators
 //// ###################
 //// DefaultIfEmpty
-List<int> intList = new List<int>();
-var newList = intList.DefaultIfEmpty();
-Console.WriteLine(newList.ElementAt(0));
+//List<int> intList = new List<int>();
+//var newList = intList.DefaultIfEmpty();
+//Console.WriteLine(newList.ElementAt(0));
 
-List<Employee> employees = new List<Employee>();
-var newList2 = employees.DefaultIfEmpty(new Employee { Id = 0 });
-var result = newList2.ElementAt(0);
-if (result.Id == 0) Console.WriteLine("The list is empty");
+//List<Employee> employees = new List<Employee>();
+//var newList2 = employees.DefaultIfEmpty(new Employee { Id = 0 });
+//var result = newList2.ElementAt(0);
+//if (result.Id == 0) Console.WriteLine("The list is empty");
+
+//// Empty
+List<Employee> emptyEmployeeList = Enumerable.Empty<Employee>().ToList();
+emptyEmployeeList.Add(new Employee { Id = 7, FirstName = "Matt", LastName = "Pocock" });
+foreach (Employee employee in emptyEmployeeList)
+{
+    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
+}
 
 
 public class EmployeeComparer : IEqualityComparer<Employee>
