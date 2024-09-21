@@ -72,9 +72,9 @@ List<Department> departmentList = Data.GetDepartments();
 //decimal result = employeeList.Max(e => e.AnnualSalary);
 //Console.WriteLine($"Max Annual Salary: {result}");
 
-//// ###################
+//// ####################
 //// Generation Operators
-//// ###################
+//// ####################
 //// DefaultIfEmpty
 //List<int> intList = new List<int>();
 //var newList = intList.DefaultIfEmpty();
@@ -86,11 +86,18 @@ List<Department> departmentList = Data.GetDepartments();
 //if (result.Id == 0) Console.WriteLine("The list is empty");
 
 //// Empty
-List<Employee> emptyEmployeeList = Enumerable.Empty<Employee>().ToList();
-emptyEmployeeList.Add(new Employee { Id = 7, FirstName = "Matt", LastName = "Pocock" });
-foreach (Employee employee in emptyEmployeeList)
+//List<Employee> emptyEmployeeList = Enumerable.Empty<Employee>().ToList();
+//emptyEmployeeList.Add(new Employee { Id = 7, FirstName = "Matt", LastName = "Pocock" });
+//foreach (Employee employee in emptyEmployeeList)
+//{
+//    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
+//}
+
+//// Range
+var intCollection = Enumerable.Range(25, 20);
+foreach (int item in intCollection)
 {
-    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
+    Console.WriteLine(item);
 }
 
 
