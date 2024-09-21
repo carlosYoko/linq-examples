@@ -184,14 +184,27 @@ List<Department> departmentList = Data.GetDepartments();
 //}
 
 //// ToDictionary
-Dictionary<int, Employee> dictionary = (from emp in employeeList
-                                        where emp.AnnualSalary > 50000
-                                        select emp).ToDictionary<Employee, int>(e => e.Id);
+//Dictionary<int, Employee> dictionary = (from emp in employeeList
+//                                        where emp.AnnualSalary > 50000
+//                                        select emp).ToDictionary<Employee, int>(e => e.Id);
 
-foreach (var key in dictionary.Keys)
+//foreach (var key in dictionary.Keys)
+//{
+//    Console.WriteLine($"Key: {key} Value: {dictionary[key].FirstName} {dictionary[key].LastName}");
+//}
+
+//// ToArray
+Employee[] array = (from emp in employeeList
+                    where emp.AnnualSalary > 50000
+                    select emp).ToArray();
+
+foreach (var item in array)
 {
-    Console.WriteLine($"Key: {key} Value: {dictionary[key].FirstName} {dictionary[key].LastName}");
+    Console.WriteLine($"{item.FirstName} {item.LastName}");
 }
+
+
+
 public class EmployeeComparer : IEqualityComparer<Employee>
 {
     public bool Equals(Employee? x, Employee? y)
