@@ -156,11 +156,28 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
 //}
 
-//// ######################
-//// Partitioning Operators
-//// ######################
 //// SkipWhile
-var results = employeeList.SkipWhile(e => e.DepartmentId != 3).ToList();
+//var results = employeeList.SkipWhile(e => e.DepartmentId != 3).ToList();
+//foreach (var employee in results)
+//{
+//    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
+//}
+
+//// Take
+//var results = employeeList.Take(2);
+//foreach (var employee in results)
+//{
+//    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
+//}
+
+//// ####################
+//// Conversion Operators
+//// ####################
+//// ToList
+List<Employee> results = (from emp in employeeList
+                          where emp.AnnualSalary > 50000
+                          select emp).ToList();
+
 foreach (var employee in results)
 {
     Console.WriteLine($"{employee.FirstName} {employee.LastName}");
@@ -192,6 +209,7 @@ public class Employee
     public decimal AnnualSalary { get; set; }
     public bool IsManager { get; set; }
     public int DepartmentId { get; set; }
+
 }
 public class Department
 {
