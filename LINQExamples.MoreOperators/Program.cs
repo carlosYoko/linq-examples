@@ -72,6 +72,7 @@ List<Department> departmentList = Data.GetDepartments();
 //decimal result = employeeList.Max(e => e.AnnualSalary);
 //Console.WriteLine($"Max Annual Salary: {result}");
 
+
 //// ####################
 //// Generation Operators
 //// ####################
@@ -106,6 +107,7 @@ List<Department> departmentList = Data.GetDepartments();
 //{
 //    Console.WriteLine(item);
 //}
+
 
 //// #############
 //// Set Operators
@@ -170,6 +172,7 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine($"{employee.FirstName} {employee.LastName}");
 //}
 
+
 //// ####################
 //// Conversion Operators
 //// ####################
@@ -194,14 +197,36 @@ List<Department> departmentList = Data.GetDepartments();
 //}
 
 //// ToArray
-Employee[] array = (from emp in employeeList
-                    where emp.AnnualSalary > 50000
-                    select emp).ToArray();
+//Employee[] array = (from emp in employeeList
+//                    where emp.AnnualSalary > 50000
+//                    select emp).ToArray();
 
-foreach (var item in array)
-{
-    Console.WriteLine($"{item.FirstName} {item.LastName}");
-}
+//foreach (var item in array)
+//{
+//    Console.WriteLine($"{item.FirstName} {item.LastName}");
+//}
+
+
+//// ##########################
+//// Let Clause and Into Clause
+//// ##########################
+//// Let
+//var result = from emp in employeeList
+//             let Initials = emp.FirstName.Substring(0, 1).ToUpper() + emp.LastName.Substring(0, 1).ToUpper()
+//             let AnnualSalaryPlusBonus = (emp.IsManager) ? emp.AnnualSalary + (emp.AnnualSalary * 0.04m) : emp.AnnualSalary + (emp.AnnualSalary * 0.02m)
+//             where Initials == "BM" || Initials == "SJ" && AnnualSalaryPlusBonus > 50000
+//             select new
+//             {
+//                 Initials = Initials,
+//                 FullName = emp.FirstName + " " + emp.LastName,
+//                 AnnualSalaryPlusBonus = AnnualSalaryPlusBonus
+//             };
+
+//foreach (var item in result)
+//{
+//    Console.WriteLine($"{item.Initials,-5} {item.FullName,-20} {item.AnnualSalaryPlusBonus,10}");
+//}
+
 
 
 
@@ -261,7 +286,7 @@ public static class Data
             Id = 2,
             FirstName = "Sara",
             LastName = "Jameson",
-            AnnualSalary = 40000,
+            AnnualSalary = 50000,
             IsManager = true,
             DepartmentId = 2,
         };
