@@ -227,7 +227,18 @@ List<Department> departmentList = Data.GetDepartments();
 //    Console.WriteLine($"{item.Initials,-5} {item.FullName,-20} {item.AnnualSalaryPlusBonus,10}");
 //}
 
+//// Into
+var results = from emp in employeeList
+              where emp.AnnualSalary > 50000
+              select emp
+              into HighEarners
+              where HighEarners.IsManager = true
+              select HighEarners;
 
+foreach (var item in results)
+{
+    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary}");
+}
 
 
 public class EmployeeComparer : IEqualityComparer<Employee>
